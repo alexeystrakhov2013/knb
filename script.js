@@ -1,6 +1,6 @@
-const rock = "rock";
-const scissors = "scissors";
-const paper = "paper";
+const rock = "r";
+const scissors = "s";
+const paper = "p";
 const PcWin = "Pc is win";
 const exit = "exit";
 
@@ -10,43 +10,67 @@ let countPcWin = 0;
 const PlayerWin = "Player is win";
 let playerChois;
 
+function messageChois(chois){
+    if(chois == rock){
+        return "rock";
+    }
+
+    if(chois == scissors){
+        return "scissors";
+    }
+
+    if(chois == paper){
+        return "paper";
+    }
+
+    return "ooops";
+}
+
+function message(playerCh, pcch, win){
+    let playerChMessage = messageChois(playerCh);
+    let pcChoiseMessage = messageChois(pcch)
+    let message = `Player has ${playerChMessage} and Pc has ${pcChoiseMessage} ${win}!!!!!`;
+    return message;
+}
+
+
 while (playerChois != exit) {
     playerChois = prompt(`player win = ${countPlayerWin}, PC win ${countPcWin} 
-        введите rock, scissors, paper (exit)`);
+        введите rock(r), scissors(s), paper(p) or (exit)`);
 
     let Pchois = [rock, scissors, paper][Math.random() * 3 | 0];
 
     // ROCk && SCISSORS
     if (playerChois == rock && Pchois == scissors) {
         countPlayerWin++;
-        alert(`player has ${rock} and Pc has ${scissors} ${PlayerWin}`);
+        alert(message(rock, scissors , PlayerWin));
     }
 
     if (playerChois == scissors && Pchois == rock) {
         countPcWin++;
-        alert(`player has ${scissors} and Pc has ${rock} ${PcWin}`);
+         alert(message(scissors, rock , PcWin));
     }
 
     // PAPER && ROCK
     if (playerChois == paper && Pchois == rock) {
         countPlayerWin++;
-        alert(`player has ${paper} and Pc has ${rock} ${PlayerWin}`);
+        alert(message(paper, rock , PlayerWin));
     }
 
     if (playerChois == rock && Pchois == paper) {
         countPcWin++;
-        alert(`player has ${rock} and Pc has ${paper} ${PcWin}`);
+        alert(message(rock, paper , PcWin));
     }
 
     // PAPER && SCISSORS
     if (playerChois == scissors && Pchois == paper) {
         countPlayerWin++;
-        alert(`player has ${scissors} and Pc has ${paper} ${PlayerWin}`);
+        alert(message(scissors, paper , PlayerWin));
     }
 
     if (playerChois == paper && Pchois == scissors) {
         countPcWin++;
-        alert(`player has ${paper} and Pc has ${scissors} ${PcWin}`);
+        alert(message(paper, scissors , PcWin));
     }
 
     // draw
